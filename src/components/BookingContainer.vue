@@ -1,11 +1,17 @@
 <template>
-  <p>this is booking container</p>
+  <div>
+    <datepicker />
+  </div>
 </template>
 <script>
 import { isBetween, isPositive } from "@/helpers/number";
+import Datepicker from "./Datepicker";
 
 export default {
   name: "BookingContainer",
+  components: {
+    Datepicker
+  },
   props: {
     price: {
       type: Number,
