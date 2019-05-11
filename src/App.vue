@@ -31,5 +31,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 60px;
+
+  .booking-container {
+    width: 300px;
+    margin: 0 auto;
+  }
 }
 </style>
