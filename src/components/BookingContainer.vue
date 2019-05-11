@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <datepicker />
+  <div class="booking-container">
+    <datepicker class="booking-container__date" />
+    <datepicker class="booking-container__date" />
   </div>
 </template>
 <script>
@@ -15,6 +16,10 @@ export default {
   props: {
     price: {
       type: Number,
+      required: true
+    },
+    currency: {
+      type: String,
       required: true
     },
     rating: {

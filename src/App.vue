@@ -1,16 +1,25 @@
 <template>
   <div id="app">
-    <booking-container />
+    <booking-container v-if="bookingConditions" v-bind="bookingConditions" />
+    <span v-else>Loading...</span>
   </div>
 </template>
 
 <script>
 import BookingContainer from "@/components/BookingContainer";
+import RepositoryFactory from "@/repositories/repository.factory";
+const bookingConditionsRepository = RepositoryFactory.get("bookingConditions");
 
 export default {
   name: "App",
   components: {
     BookingContainer
+  },
+  data: () => ({
+    bookingConditions: null
+  }),
+  async created() {
+    this.bookingConditions = await bookingConditionsRepository.get();
   }
 };
 </script>
