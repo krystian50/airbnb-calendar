@@ -8,6 +8,7 @@
   </div>
 </template>
 <script>
+import { generateMonthMatrix } from "@/helpers/dates.js";
 import DatepickerCalendarHeader from "./DatepickerCalendarHeader";
 
 export default {
@@ -17,6 +18,9 @@ export default {
   data: () => ({
     dates: [new Date()]
   }),
+  created() {
+    console.log(generateMonthMatrix(2019, 7));
+  },
   methods: {
     changeMonthBy(numberOfMonths) {
       this.$emit("change-month-by", numberOfMonths);
