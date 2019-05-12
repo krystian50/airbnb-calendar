@@ -6,7 +6,11 @@
       readonly
       @click="showCalendar()"
     />
-    <datepicker-calendar v-show="isOpen" @change-month-by="changeMonthBy" />
+    <datepicker-calendar
+      v-show="isOpen"
+      :default-date="defaultDate"
+      @change-month-by="changeMonthBy"
+    />
   </div>
 </template>
 <script>
@@ -26,6 +30,11 @@ export default {
       type: Date,
       required: false,
       default: null
+    },
+    defaultDate: {
+      type: Date,
+      required: false,
+      default: () => new Date()
     }
   },
   data: () => ({

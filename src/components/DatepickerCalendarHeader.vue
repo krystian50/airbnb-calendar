@@ -7,7 +7,7 @@
       &larr;
     </button>
     <span class="datepicker-calendar-header__header">
-      may 2017
+      {{ props.dateTitle }}
     </span>
     <button
       class="datepicker-calendar-header__arrow"
