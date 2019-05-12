@@ -56,3 +56,13 @@ export function getWeekdays({ full } = { full: false }) {
 
   return days;
 }
+
+/**
+ * Compare two dates
+ * @param {Date} firstDate
+ * @param {Date} secondDate
+ * @returns {number} difference
+ */
+export function differenceInDays(firstDate, secondDate) {
+  return Math.round((secondDate - firstDate) / (1000 * 60 * 60 * 24));
+}

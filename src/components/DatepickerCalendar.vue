@@ -20,7 +20,7 @@
           <datepicker-calendar-tile
             v-for="(date, columnIndex) in datesRow"
             :key="columnIndex"
-            :selected="selectedDate === date"
+            :selected="isDateSelected(date)"
             :empty="!date"
             :day-in-month="date && date.getDate()"
             @select="onDaySelect(date)"
@@ -31,7 +31,11 @@
   </div>
 </template>
 <script>
-import { generateMonthMatrix, getWeekdays } from "@/helpers/dates.js";
+import {
+  generateMonthMatrix,
+  getWeekdays,
+  differenceInDays
+} from "@/helpers/dates.js";
 import DatepickerCalendarHeader from "./DatepickerCalendarHeader";
 import DatepickerCalendarTile from "./DatepickerCalendarTile";
 
@@ -100,6 +104,13 @@ export default {
     onDaySelect(date) {
       this.selectedDate = date;
       this.$emit("input", this.selectedDate);
+    },
+    isDateSelected(date) {
+      if (!this.selectedDate) {
+        return false;
+      }
+
+      return differenceInDays(date, this.selectedDate) === 0;
     }
   }
 };
