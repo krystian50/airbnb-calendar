@@ -38,6 +38,7 @@ import DatepickerCalendarTile from "./DatepickerCalendarTile";
 const weekdays = getWeekdays();
 
 export default {
+  name: "DatepickerCalendar",
   components: {
     DatepickerCalendarHeader,
     DatepickerCalendarTile
@@ -45,8 +46,12 @@ export default {
   props: {
     defaultDate: {
       type: Date,
+      required: true
+    },
+    value: {
+      type: Date,
       required: false,
-      default: () => new Date()
+      default: null
     }
   },
   data: () => ({
@@ -59,8 +64,14 @@ export default {
     weekdays
   }),
   created() {
-    this.calendarDate.year = this.defaultDate.getFullYear();
-    this.calendarDate.month = this.defaultDate.getMonth();
+    if (this.value) {
+      this.calendarDate.year = this.value.getFullYear();
+      this.calendarDate.month = this.value.getMonth();
+    } else {
+      this.calendarDate.year = this.defaultDate.getFullYear();
+      this.calendarDate.month = this.defaultDate.getMonth();
+    }
+
     this.dates = generateMonthMatrix(
       this.calendarDate.year,
       this.calendarDate.month

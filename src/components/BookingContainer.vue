@@ -8,9 +8,9 @@
     />
     <hr class="booking-container__divider" />
     <div class="booking-container__date-range">
-      <datepicker class="booking-container__date" />
+      <datepicker v-model="dateFrom" class="booking-container__date" />
       <span class="booking-container__date-separator">&rarr;</span>
-      <datepicker class="booking-container__date" />
+      <datepicker v-model="dateTo" class="booking-container__date" />
     </div>
   </div>
 </template>
@@ -48,7 +48,11 @@ export default {
       type: Array,
       default: () => []
     }
-  }
+  },
+  data: () => ({
+    dateFrom: new Date(),
+    dateTo: new Date()
+  })
 };
 </script>
 <style lang="scss" scoped>

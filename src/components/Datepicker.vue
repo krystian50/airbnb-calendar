@@ -1,6 +1,7 @@
 <template>
   <div v-click-outside="closeCalendar" class="datepicker">
     <input
+      v-model="selectedDate"
       class="datepicker__input"
       type="text"
       readonly
@@ -8,8 +9,9 @@
     />
     <datepicker-calendar
       v-show="isOpen"
+      v-model="selectedDate"
       :default-date="defaultDate"
-      @change-month-by="changeMonthBy"
+      @input="onDateSelected()"
     />
   </div>
 </template>
@@ -38,8 +40,12 @@ export default {
     }
   },
   data: () => ({
-    isOpen: false
+    isOpen: false,
+    selectedDate: null
   }),
+  created() {
+    this.selectedDate = this.value;
+  },
   methods: {
     showCalendar() {
       this.isOpen = true;
@@ -47,8 +53,9 @@ export default {
     closeCalendar() {
       this.isOpen = false;
     },
-    changeMonthBy(months) {
-      console.log(months);
+    onDateSelected() {
+      this.$emit("input", this.selectedDate);
+      this.isOpen = false;
     }
   }
 };
