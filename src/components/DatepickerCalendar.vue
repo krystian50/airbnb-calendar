@@ -4,6 +4,7 @@
       @go-back="changeMonthBy(-1)"
       @go-next="changeMonthBy(1)"
     />
+    <div class="datepicker-calendar__content"></div>
   </div>
 </template>
 <script>
@@ -13,6 +14,9 @@ export default {
   components: {
     DatepickerCalendarHeader
   },
+  data: () => ({
+    dates: [new Date()]
+  }),
   methods: {
     changeMonthBy(numberOfMonths) {
       this.$emit("change-month-by", numberOfMonths);
