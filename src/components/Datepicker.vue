@@ -1,12 +1,12 @@
 <template>
-  <div class="datepicker">
+  <div v-click-outside="closeCalendar" class="datepicker">
     <input
       class="datepicker__input"
       type="text"
       readonly
-      @click="toggleCalendar()"
+      @click="showCalendar()"
     />
-    <div v-if="isOpen" class="datepicker__calendar">
+    <div v-show="isOpen" class="datepicker__calendar">
       <datepicker-header
         @go-back="changeMonthBy(-1)"
         @go-next="changeMonthBy(1)"
@@ -15,10 +15,15 @@
   </div>
 </template>
 <script>
+import clickOutside from "@/directives/click-outside";
+
 import DatepickerHeader from "./DatepickerHeader";
 
 export default {
   name: "Datepicker",
+  directives: {
+    clickOutside
+  },
   components: {
     DatepickerHeader
   },
@@ -33,8 +38,11 @@ export default {
     isOpen: false
   }),
   methods: {
-    toggleCalendar() {
-      this.isOpen = !this.isOpen;
+    showCalendar() {
+      this.isOpen = true;
+    },
+    closeCalendar() {
+      this.isOpen = false;
     },
     changeMonthBy(months) {
       console.log(months);
