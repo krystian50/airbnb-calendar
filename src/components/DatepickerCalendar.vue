@@ -7,6 +7,15 @@
     />
     <div class="datepicker-calendar__content">
       <table>
+        <tr>
+          <th
+            v-for="weekday in weekdays"
+            :key="weekday"
+            class="datepikcer-calendar__weekday"
+          >
+            {{ weekday }}
+          </th>
+        </tr>
         <tr v-for="(datesRow, rowIndex) in dates" :key="rowIndex">
           <datepicker-calendar-tile
             v-for="(date, columnIndex) in datesRow"
@@ -19,9 +28,11 @@
   </div>
 </template>
 <script>
-import { generateMonthMatrix } from "@/helpers/dates.js";
+import { generateMonthMatrix, getWeekdays } from "@/helpers/dates.js";
 import DatepickerCalendarHeader from "./DatepickerCalendarHeader";
 import DatepickerCalendarTile from "./DatepickerCalendarTile";
+
+const weekdays = getWeekdays();
 
 export default {
   components: {
@@ -40,7 +51,8 @@ export default {
     calendarDate: {
       year: null,
       month: null
-    }
+    },
+    weekdays
   }),
   created() {
     this.calendarDate.year = this.defaultDate.getFullYear();

@@ -12,7 +12,7 @@ function _chunk(arr, chunkSize) {
  */
 export function generateMonthMatrix(year, month) {
   // divide one extra empty day if first day of week is sunday
-  const startOffset = getFirstDayOfWeekName() === "sunday" ? -1 : 0;
+  const startOffset = getFirstDayOfWeekName() === "sunday" ? 0 : -1;
   const array = new Array(35);
   var firstDay = new Date(year, month, 1);
 
