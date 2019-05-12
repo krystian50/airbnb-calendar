@@ -24,6 +24,11 @@
   justify-content: space-between;
   width: 100%;
 
+  &__header {
+    line-height: 32px;
+    font-size: 16px;
+  }
+
   &__arrow {
     padding: 5px 15px;
     border: 2px solid $border-color;
