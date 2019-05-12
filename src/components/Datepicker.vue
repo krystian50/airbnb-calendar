@@ -6,18 +6,12 @@
       readonly
       @click="showCalendar()"
     />
-    <div v-show="isOpen" class="datepicker__calendar">
-      <datepicker-header
-        @go-back="changeMonthBy(-1)"
-        @go-next="changeMonthBy(1)"
-      />
-    </div>
+    <datepicker-calendar v-show="isOpen" @change-month-by="changeMonthBy" />
   </div>
 </template>
 <script>
 import clickOutside from "@/directives/click-outside";
-
-import DatepickerHeader from "./DatepickerHeader";
+import DatepickerCalendar from "./DatepickerCalendar";
 
 export default {
   name: "Datepicker",
@@ -25,7 +19,7 @@ export default {
     clickOutside
   },
   components: {
-    DatepickerHeader
+    DatepickerCalendar
   },
   props: {
     value: {
