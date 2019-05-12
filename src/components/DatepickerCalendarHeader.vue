@@ -17,3 +17,18 @@
     </button>
   </div>
 </template>
+<style lang="scss" scoped>
+.datepicker-calendar-header {
+  margin: 10px 0 20px;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &__arrow {
+    padding: 5px 15px;
+    border: 2px solid $border-color;
+    font-size: 15px;
+    outline: none;
+  }
+}
+</style>

@@ -20,7 +20,10 @@
           <datepicker-calendar-tile
             v-for="(date, columnIndex) in datesRow"
             :key="columnIndex"
+            :selected="selectedDate === date"
+            :empty="!date"
             :day-in-month="date && date.getDate()"
+            @select="onDaySelect(date)"
           />
         </tr>
       </table>
@@ -52,6 +55,7 @@ export default {
       year: null,
       month: null
     },
+    selectedDate: null,
     weekdays
   }),
   created() {
@@ -81,14 +85,17 @@ export default {
         this.calendarDate.year,
         this.calendarDate.month
       );
+    },
+    onDaySelect(date) {
+      this.selectedDate = date;
+      this.$emit("input", this.selectedDate);
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .datepicker-calendar {
-  width: 150px;
-  width: 170px;
+  width: 245px;
   padding: 10px;
   position: absolute;
   background-color: $calendar-background-color;
