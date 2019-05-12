@@ -12,9 +12,12 @@
 </template>
 <style lang="scss" scoped>
 .datepicker-calendar-tile {
-  border: 1px solid $border-color;
   padding: 8px;
-  cursor: pointer;
+
+  &:not(.datepicker-calendar-tile--empty) {
+    border: 1px solid $border-color;
+    cursor: pointer;
+  }
 
   &:hover:not(.datepicker-calendar-tile--selected):not(.datepicker-calendar-tile--empty) {
     background-color: $calendar-hover-tile-color;
