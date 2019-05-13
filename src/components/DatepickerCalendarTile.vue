@@ -14,12 +14,12 @@
 .datepicker-calendar-tile {
   padding: 8px;
 
-  &:not(.datepicker-calendar-tile--empty) {
+  &:not(&--empty) {
     border: 1px solid $border-color;
     cursor: pointer;
   }
 
-  &:hover:not(.datepicker-calendar-tile--selected):not(.datepicker-calendar-tile--empty) {
+  &:hover:not(&--selected):not(&--empty) {
     background-color: $calendar-hover-tile-color;
   }
 }
