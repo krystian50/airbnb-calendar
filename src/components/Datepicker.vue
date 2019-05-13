@@ -11,6 +11,7 @@
       v-show="isOpen"
       v-model="selectedDate"
       :default-date="defaultDate"
+      :available-dates="availableDates"
       @input="onDateSelected()"
     />
   </div>
@@ -37,6 +38,10 @@ export default {
       type: Date,
       required: false,
       default: () => new Date()
+    },
+    availableDates: {
+      type: Array,
+      default: () => []
     }
   },
   data: () => ({

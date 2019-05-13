@@ -8,9 +8,17 @@
     />
     <hr class="booking-container__divider" />
     <div class="booking-container__date-range">
-      <datepicker v-model="dateFrom" class="booking-container__date" />
+      <datepicker
+        v-model="dateFrom"
+        class="booking-container__date"
+        :available-dates="availableDates"
+      />
       <span class="booking-container__date-separator">&rarr;</span>
-      <datepicker v-model="dateTo" class="booking-container__date" />
+      <datepicker
+        v-model="dateTo"
+        class="booking-container__date"
+        :available-dates="availableDates"
+      />
     </div>
   </div>
 </template>

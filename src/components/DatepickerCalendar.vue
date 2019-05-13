@@ -20,8 +20,9 @@
           <datepicker-calendar-tile
             v-for="(date, columnIndex) in datesRow"
             :key="columnIndex"
-            :selected="isDateSelected(date)"
+            :selected="isSameDay(selectedDate, date)"
             :empty="!date"
+            :disabled="isDisabledDate(date)"
             :day-in-month="date && date.getDate()"
             @select="onDaySelect(date)"
           />
@@ -56,6 +57,10 @@ export default {
       type: Date,
       required: false,
       default: null
+    },
+    availableDates: {
+      type: Array,
+      default: () => []
     }
   },
   data: () => ({
@@ -105,12 +110,18 @@ export default {
       this.selectedDate = date;
       this.$emit("input", this.selectedDate);
     },
-    isDateSelected(date) {
-      if (!this.selectedDate) {
+    isSameDay(firstDate, secondDate) {
+      if (!firstDate || !secondDate) {
         return false;
       }
 
-      return differenceInDays(date, this.selectedDate) === 0;
+      return differenceInDays(firstDate, secondDate) === 0;
+    },
+    // date is disabled when its not in availableDates
+    isDisabledDate(date) {
+      const comparator = availableDate => this.isSameDay(availableDate, date);
+
+      return this.availableDates.findIndex(comparator) === -1;
     }
   }
 };
